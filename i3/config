@@ -1,0 +1,295 @@
+##### WALLPAPER ######
+## IMAGE SCRIPT ##
+exec_always /home/felipe/.config/scripts/bgwallpaper
+## GIF SCRIPT ##
+exec /home/felipe/.config/scripts/gifwall
+######################
+
+
+#### ON START EXECUTE ####
+
+# CHANGE THE BACKLIGHT
+exec xbacklight -set 10
+
+### MONITORS DEFINITION
+exec xrandr --output HDMI-1 --primary --mode 1360x768 --pos 0x0 --rotate normal --output eDP-1 --mode 1366x768 --pos 1360x0 --rotate normal
+
+## COMPTON CONFIG FILE SCRIPT
+exec_always ~/.config/scripts/comptonStart
+
+## Start polybar
+exec_always /home/felipe/.config/polybar/barstart
+
+
+##########################
+
+##### VARIABLES ######
+# CENTER
+set $center move absolute center position
+# RULER KEY
+set $mod Mod4
+# FONT 
+font pango:monospace 8, FontAwesome 8
+
+# colors
+set $bg-color	         #4EBBA6
+set $inactive-bg-color   #2f343f
+set $text-color          #f3f4f5
+set $inactive-text-color #676E7D
+set $urgent-bg-color     #E53935
+
+
+# COLOR FROM XRESOURCES
+# FOCUSED WINDOW BORDER COLORS
+set_from_resource $FocusBorderColor color7
+
+# UNFOCUSED WINDOW BORDER
+set_from_resource $UnfocusBorderColor color6
+
+# TEXT COLOR OF FOCUSED WINDOW
+set_from_resource $focused_text color8
+
+# TEXT COLOR OF UNFOCUSED WINDOW
+set_from_resource $unfocused_text color7
+
+###################### 
+
+
+### KEYBINDINGS ###
+
+# Execute qutebrowser 
+bindsym $mod+q exec qutebrowser
+
+## Execute ColorPicker
+bindsym $mod+c exec ColorPicker
+
+# Execute gnome-flashback to use gnome control center	
+bindsym $mod+Ctrl+ccedilla exec /home/felipe/.config/scripts/controlCenter
+
+# LAYOUT RESTORE #
+bindsym $mod+Mod1+3 exec /home/felipe/.config/scripts/coding_layout
+
+# Change the brightness of screen 
+bindsym $mod+plus exec xbacklight -inc 10
+bindsym $mod+minus exec xbacklight -dec 10
+
+# change focus between tiling / floating windows
+bindsym $mod+shift+space focus mode_toggle
+
+# alternatively, cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+ccedilla move right
+
+# alternatively, cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+space floating toggle
+
+# To drag floating windows to their wanted position
+floating_modifier $mod
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# change focus
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+ccedilla focus right
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# start a terminal
+bindsym $mod+Return exec urxvt -name 'foo' #Terminal urxvt
+
+# start rofi
+bindsym $mod+d exec rofi -show run -config .config/rofi/config
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# exit i3 logout
+bindsym $mod+shift+e exit i3
+
+# resize
+bindsym $mod+r mode "resize"
+
+# move workspaces between monitors
+bindsym $mod+Ctrl+Right move workspace to output right
+bindsym $mod+Ctrl+Left move workspace to output left
+
+## Only laptop
+bindsym $mod+ctrl+1 exec /home/felipe/.screenlayout/onlyNotebook.sh && /home/felipe/.config/polybar/barstart
+
+## Only HDMI
+bindsym $mod+ctrl+2 exec /home/felipe/.screenlayout/onlyHDMI.sh  && /home/felipe/.config/polybar/barstart
+
+## HDMI and laptop 
+bindsym $mod+ctrl+3 exec /home/felipe/.screenlayout/default.sh && /home/felipe/.config/polybar/barstart"
+
+## screenshot
+bindsym $mod+b exec flameshot gui
+bindsym $mod+Shift+b exec flameshot full -p  ~/Imagens/shots/
+
+
+###############
+
+#### SETTINGS ####
+
+## GAPS 
+gaps inner 13  
+
+# ROUNDED BORDERS
+border_radius 10
+
+hide_edge_borders vertical
+
+# set floating of terminal
+for_window [instance="^foo$"] floating enable
+
+# disable borders
+for_window [class="^.*"] border pixel 0
+
+
+### WINDOW COLORS ####
+#                       border              background          text                 indicator
+client.focused          $FocusBorderColor   $FocusBorderColor   $focused_text        $FocusBorderColor
+client.unfocused        $UnfocusBorderColor $UnfocusBorderColor $unfocused_text      $UnfocusBorderColor
+client.focused_inactive $UnfocusBorderColor $UnfocusBorderColor $UnfocusBorderColor  $UnfocusBorderColor
+client.urgent           $urgent-bg-color    $urgent-bg-color    $text-color          #00ff00
+client.placeholder	#000000             #0c0c0c             #ffffff              #000000   #0c0c0c
+
+## WORKSPACE ASSIGN ##
+for_window [instance="spotify"] move container to workspace $workspace10
+assign [class="Spotify"] $workspace10
+assign [class="TelegramDesktop"] $workspace4 
+assign [class="Blender"] $workspace5
+assign [class="balena-etcher-electron"] $workspace6
+assign [class="Usb-creator-gtk"] $workspace6
+assign [class="discord"] $workspace7
+assign [class="Firefox"] $workspace1
+assign [class="Sublime_text"] $workspace3
+assign [class="Code"] $workspace3
+assign [class="processing-app-Base"] $workspace3
+assign [class="Chromium-browser"] $workspace8
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing down will grow the window’s height.
+        bindsym a resize shrink width 1 px or 1 ppt
+        bindsym s resize grow height 1 px or 1 ppt
+        bindsym w resize shrink height 1 px or 1 ppt
+        bindsym d resize grow width 1 px or 1 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+
+
+##################
+
+
+##### WORKSPACE ######
+# Variables to name the workspaces
+set $workspace1 ""
+set $workspace2 ""
+set $workspace3 ""
+set $workspace4 ""
+set $workspace5 ""
+set $workspace6 ""
+set $workspace7 ""
+set $workspace8 ""
+set $workspace9 "9"
+set $workspace10 ""
+
+# Multimonitor setup - HDMI on left
+set $workspace11 "1"
+set $workspace12 "2"
+set $workspace13 "3"
+set $workspace14 "4"
+set $workspace15 "5"
+
+# switch to workspace
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+2 workspace $workspace2
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+5 workspace $workspace5
+bindsym $mod+6 workspace $workspace6
+bindsym $mod+7 workspace $workspace7
+bindsym $mod+8 workspace $workspace8
+bindsym $mod+9 workspace $workspace9
+bindsym $mod+0 workspace $workspace10
+
+# Multimonitor setup - HDMI on left
+bindsym $mod+KP_1 workspace $workspace11
+bindsym $mod+KP_2 workspace $workspace12
+bindsym $mod+KP_3 workspace $workspace13
+bindsym $mod+KP_4 workspace $workspace14
+bindsym $mod+KP_5 workspace $workspace15
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $workspace1
+bindsym $mod+Shift+2 move container to workspace $workspace2
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5
+bindsym $mod+Shift+6 move container to workspace $workspace6
+bindsym $mod+Shift+7 move container to workspace $workspace7
+bindsym $mod+Shift+8 move container to workspace $workspace8
+bindsym $mod+Shift+9 move container to workspace $workspace9
+bindsym $mod+Shift+0 move container to workspace $workspace10
+
+# Multimonitor setup - HDMI on left
+bindsym $mod+Shift+KP_1 move container to workspace $workspace11
+bindsym $mod+Shift+KP_2 move container to workspace $workspace12
+bindsym $mod+Shift+KP_3 move container to workspace $workspace13
+bindsym $mod+Shift+KP_4 move container to workspace $workspace14
+bindsym $mod+Shift+KP_5 move container to workspace $workspace15
+
+######################
