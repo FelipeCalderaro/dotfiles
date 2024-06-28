@@ -23,12 +23,17 @@
   # programs.dconf.enable = true;
   # programs.thunar.enable = true;
   # programs.xfconf.enable = true;
+  
   programs.zsh.enable = true;
 
   # Packages
   environment.systemPackages = with pkgs; [
     zsh
-    kitty
+    git
+    vscode
+    ranger
+    wofi
+    terminator
     at-spi2-atk
     qt6.qtwayland
     psi-notify

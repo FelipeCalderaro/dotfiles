@@ -23,10 +23,10 @@
 
 			# Modules
 			./modules/nixos/bootloader.nix
-			./modules/nixos/networking.nix
 			./modules/nixos/settings.nix
-			./modules/nixos/internacionalisation.nix
+			./modules/nixos/networking.nix
 			./modules/nixos/sound.nix
+			./modules/nixos/internacionalisation.nix
 			./modules/nixos/display-manager.nix
 			./modules/nixos/users.nix
 
@@ -40,7 +40,7 @@
 
 			# Graphical 
 			./modules/nixos/hyprland.nix
-			./modules/nvidia/nvidia.nix
+			# ./modules/nvidia/nvidia.nix
 
 			# Environment Variables
 			./modules/nixos/environment-variables.nix
