@@ -20,13 +20,15 @@
   # ];
   # services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
   # programs.direnv.enable = true;
-  # programs.fish.enable = true;
   # programs.dconf.enable = true;
   # programs.thunar.enable = true;
   # programs.xfconf.enable = true;
+  programs.zsh.enable = true;
 
   # Packages
   environment.systemPackages = with pkgs; [
+    zsh
+    kitty
     at-spi2-atk
     qt6.qtwayland
     psi-notify
