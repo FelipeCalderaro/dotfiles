@@ -25,22 +25,26 @@
   # programs.xfconf.enable = true;
   
   programs.zsh.enable = true;
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+  };
 
   # Packages
   environment.systemPackages = with pkgs; [
-    zsh
-    git
-    vscode
-    ranger
-    wofi
-    wget
-    terminator
-    at-spi2-atk
-    qt6.qtwayland
-    psi-notify
+    # Notification
     poweralertd
+    dunst
+    vscodium
+    psi-notify
+
+    # Browsers
+    brave
+    # Miscelanious
     playerctl
     psmisc
+    at-spi2-atk
+    qt6.qtwayland
     grim
     slurp
     imagemagick
@@ -53,15 +57,33 @@
     xdg-utils
     wtype
     wlrctl
-    waybar
-    rofi-wayland
-    dunst
-    gifsicle
-    spotify
-    youtube-music
-    discord
     tdesktop
-    vscodium
-    brave
+    rofi-wayland
+    gifsicle
+    waybar
+
+    # Terminals / Terminal Tools / CLI's
+    terminator
+    zsh
+    git
+    ranger
+    wofi
+    wget
+    
+    # Code editors
+    vscode
+
+    # Social media
+    discord
+
+    # Music
+    youtube-music
+    spotify
+
+    # Pdf Readers
+    mupdf
+
+    # Dependencies
+
   ];
 }

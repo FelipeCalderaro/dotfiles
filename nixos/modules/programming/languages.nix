@@ -6,5 +6,7 @@
     go
     nodejs
     nodePackages.npm
+    gcc
+    zig
   ];  
 }

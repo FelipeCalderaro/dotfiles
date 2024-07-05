@@ -15,7 +15,7 @@
   time.timeZone = "America/Belem";
 
   # Configure keymap in X11
-  services.xserver.xbk = {
+  services.xserver.xkb = {
     layout = "us";
     variant = "";
   };

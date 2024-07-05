@@ -3,21 +3,24 @@
 
 # Except
 !nixos/
-!nixos/*
+!nixos/**/*
 
 !neofetch/
-!neofetch/*
+!neofetch/**/*
 
 !ranger/
-!ranger/*
+!ranger/**/*
 
 !kitty/
-!kitty/*
+!kitty/**/*
 
 !hypr/
-!hypr/*
+!hypr/**/*
 
 !nautilus/
-!nautilus/*
+!nautilus/**/*
+
+!nvim
+!nvim/**/*
 
 !.gitignore
