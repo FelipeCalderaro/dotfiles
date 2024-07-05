@@ -32,7 +32,10 @@
 
 					./modules/virtualization/virtualization.nix
 					./modules/info-gathering/info-fetchers.nix
+	
 					./modules/programming/lsp.nix
+					./modules/programming/languages.nix
+
 					./modules/fonts.nix
 					./modules/gnome.nix
 					./modules/auto-upgrade.nix
