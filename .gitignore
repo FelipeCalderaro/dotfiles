@@ -1,0 +1,23 @@
+# Ignore all
+*
+
+# Except
+!nixos/
+!nixos/*
+
+!neofetch/
+!neofetch/*
+
+!ranger/
+!ranger/*
+
+!kitty/
+!kitty/*
+
+!hypr/
+!hypr/*
+
+!nautilus/
+!nautilus/*
+
+!.gitignore

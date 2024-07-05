@@ -15,8 +15,8 @@
 				specialArgs = { inherit inputs; };
 				modules = [
 					# Main Configuration
-					./hosts/default/configuration.nix
-					./hosts/default/hardware-configuration.nix
+					./configuration.nix
+					./hardware-configuration.nix
 
 					# Packages
 					./modules/services.nix
