@@ -8,7 +8,7 @@
     egl-wayland
   ];
 
-  hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
   hardware.nvidia = {
 
     # Modesetting is required.
