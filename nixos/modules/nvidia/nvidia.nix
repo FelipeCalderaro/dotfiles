@@ -18,7 +18,7 @@
     # Enable this if you have graphical corruption issues or application crashes after waking
     # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead
     # of just the bare essentials.
-    powerManagement.enable = false;
+    powerManagement.enable = true;
 
     # Fine-grained power management. Turns off GPU when not in use.
     # Experimental and only works on modern Nvidia GPUs (Turing or newer).
@@ -38,44 +38,21 @@
     nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = let 
+	rcu_patch = pkgs.fetchPatch {
+		url = "https://github.com/gentoo/gentoo/raw/c64caf53/x11-drivers/nvidia-drivers/files/nvidia-drivers-470.223.02-gpl-pfn_valid.patch";
+		hash = "sha256-eZiQQp25/asE7MfGvfe6dA/kdCvek95Ya/FFGp24dVg=";
+	};	
+    in  config.boot.kernelPackages.nvidiaPackages.mkDriver {
+    	version = "535.154.05";
+    	sha256_64bit = "sha256-fpUGXKprgt6SYRDxSCemGXLrEsIA6GOinp+0eGbqqJg=";
+    	sha256_aarch64 = "sha256-G0/GiObf/BZMkzzET8HQjdIcvCSqB1uhsinro2HLK9k=";
+    	openSha256 = "sha256-wvRdHguGLxS0mR06P5Qi++pDJBCF8pJ8hr4T8O6TJIo=";
+    	settingsSha256 = "sha256-9wqoDEWY4I7weWW05F4igj1Gj9wjHsREFMztfEmqm10=";
+    	persistencedSha256 = "sha256-d0Q3Lk80JqkS1B54Mahu2yY/WocOqFFbZVBh+ToGhaE=";
 
-    # Nvidia Optimus PRIME. It is a technology developed by Nvidia to optimize
-    # the power consumption and performance of laptops equipped with their GPUs.
-    # It seamlessly switches between the integrated graphics,
-    # usually from Intel, for lightweight tasks to save power,
-    # and the discrete Nvidia GPU for performance-intensive tasks.
-    # prime = {
-  	# 	offload = {
-  	# 		enable = true;
-  	# 		enableOffloadCmd = true;
-  	# 	};
-    # 
-  	# 	# FIXME: Change the following values to the correct Bus ID values for your system!
-    #   # More on "https://wiki.nixos.org/wiki/Nvidia#Configuring_Optimus_PRIME:_Bus_ID_Values_(Mandatory)"
-  	# 	nvidiaBusId = "PCI:0:0:0";
-  	# 	intelBusId = "PCI:0:0:0";
-  	# };
+    	patches = [ rcu_patch ];
+    };
   };
 
-  # NixOS specialization named 'nvidia-sync'. Provides the ability
-  # to switch the Nvidia Optimus Prime profile
-  # to sync mode during the boot process, enhancing performance.
-  # specialisation = {
-  #   nvidia-sync.configuration = {
-  #     system.nixos.tags = [ "nvidia-sync" ];
-  #     hardware.nvidia = {
-  #       powerManagement.finegrained = lib.mkForce false;
-  # 
-  #       prime.offload.enable = lib.mkForce false;
-  #       prime.offload.enableOffloadCmd = lib.mkForce false;
-  # 
-  #       prime.sync.enable = lib.mkForce true;
-  #       # Dynamic Boost. It is a technology found in NVIDIA Max-Q design laptops with RTX GPUs.
-  #       # It intelligently and automatically shifts power between
-  #       # the CPU and GPU in real-time based on the workload of your game or application.
-  #       dynamicBoost.enable = lib.mkForce true;
-  #     };
-  #   };
-  # };
 }

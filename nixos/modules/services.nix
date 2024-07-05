@@ -33,6 +33,7 @@
     vscode
     ranger
     wofi
+    wget
     terminator
     at-spi2-atk
     qt6.qtwayland

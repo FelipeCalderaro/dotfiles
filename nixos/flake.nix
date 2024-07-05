@@ -29,6 +29,7 @@
 			./modules/nixos/internacionalisation.nix
 			./modules/nixos/display-manager.nix
 			./modules/nixos/users.nix
+			./modules/nixos/shell.nix
 
 			./modules/virtualization/virtualization.nix
 			./modules/info-gathering/info-fetchers.nix
