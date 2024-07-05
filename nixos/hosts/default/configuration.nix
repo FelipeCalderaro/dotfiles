@@ -8,6 +8,7 @@
   # Include the results of the hardware scan.      	
   imports = [ 
     inputs.home-manager.nixosModules.default
+    ./hardware-configuration.nix
   ];
   
   # Set your time zone.
@@ -18,6 +19,9 @@
     layout = "us";
     xkbVariant = "";
   };
+
+
+  hardware.nvidia.package  = pkgs.linuxPackages_latest.nvidiaPackages.stable;
 
   # home-manager = {
   #   extraSpecialArgs = { inherit inputs; };

@@ -40,7 +40,7 @@
 
 			# Graphical 
 			./modules/nixos/hyprland.nix
-			# ./modules/nvidia/nvidia.nix
+			./modules/nvidia/nvidia.nix
 
 			# Environment Variables
 			./modules/nixos/environment-variables.nix
